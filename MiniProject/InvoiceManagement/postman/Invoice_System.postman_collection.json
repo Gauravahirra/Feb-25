@@ -1,0 +1,177 @@
+{
+  "info": {
+    "_postman_id": "1234567-1234-1234-1234-123456789012",
+    "name": "Invoice System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Signup",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"John Doe\",\n    \"username\": \"johndoe\",\n    \"phone\": \"1234567890\",\n    \"password\": \"password123\",\n    \"confirmPassword\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/signup",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "auth", "signup"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"johndoe\",\n    \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Invoices",
+      "item": [
+        {
+          "name": "Create Invoice",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"invoiceId\": \"INV-001\",\n    \"productName\": \"Product 1\",\n    \"dueDate\": \"2024-03-31\",\n    \"issuedDate\": \"2024-03-01\",\n    \"productPrice\": 100.00,\n    \"quantity\": 2,\n    \"status\": \"PENDING\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/invoices",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "invoices"]
+            }
+          }
+        },
+        {
+          "name": "Get All Invoices",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/invoices",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "invoices"]
+            }
+          }
+        },
+        {
+          "name": "Update Invoice",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"invoiceId\": \"INV-001\",\n    \"productName\": \"Updated Product 1\",\n    \"dueDate\": \"2024-03-31\",\n    \"issuedDate\": \"2024-03-01\",\n    \"productPrice\": 150.00,\n    \"quantity\": 3,\n    \"status\": \"PAID\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/invoices/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "invoices", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Invoice",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:8080/api/invoices/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "invoices", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+} 
